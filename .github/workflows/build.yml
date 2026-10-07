@@ -125,7 +125,21 @@ jobs:
         if: inputs.deploy_format == 'sideloaded' || inputs.deploy_format == 'trollstore'
         id: x_version
         run: |
-          wget "$IPA_URL" --no-verbose -O main/packages/com.atebits.Tweetie2.ipa
+          set -euo pipefail
+          if [[ "$IPA_URL" == *"mega.nz"* ]]; then
+            echo "Mega link detected; installing megatools..."
+            brew install megatools
+            TMPDL="$(mktemp -d)"
+            megadl --no-progress --path "$TMPDL/" "$IPA_URL"
+            IPA_FILE="$(find "$TMPDL" -maxdepth 1 -type f | head -n1)"
+            if [[ -z "$IPA_FILE" ]]; then
+              echo "Mega download failed"
+              exit 1
+            fi
+            mv "$IPA_FILE" main/packages/com.atebits.Tweetie2.ipa
+          else
+            wget "$IPA_URL" --no-verbose -O main/packages/com.atebits.Tweetie2.ipa
+          fi
           unzip -q main/packages/com.atebits.Tweetie2.ipa -d main/tmp
           X_VERSION=$(grep -A 1 '<key>CFBundleShortVersionString</key>' main/tmp/Payload/Twitter.app/Info.plist |
             grep '<string>' | awk -F'[><]' '{print $3}')
