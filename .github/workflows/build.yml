@@ -200,6 +200,25 @@ jobs:
         run: |
           echo "package=$(ls -t main/packages | head -n1)" >> "$GITHUB_OUTPUT"
 
+      - name: Set unique bundle identifier
+        if: inputs.deploy_format == 'sideloaded' || inputs.deploy_format == 'trollstore'
+        run: |
+          set -euo pipefail
+          PACKAGE="${{ github.workspace }}/main/packages/${{ steps.package_name.outputs.package }}"
+          WORK="$(mktemp -d)"
+          unzip -q "$PACKAGE" -d "$WORK"
+          APP="$WORK/Payload/Twitter.app"
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.unktr.neofreebird" "$APP/Info.plist"
+          for appex in "$APP"/PlugIns/*.appex; do
+            [ -d "$appex" ] || continue
+            base="$(basename "$appex" .appex)"
+            /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.unktr.neofreebird.$base" "$appex/Info.plist" 2>/dev/null || true
+          done
+          rm -f "$PACKAGE"
+          ( cd "$WORK" && zip -qry "$PACKAGE" Payload )
+          rm -rf "$WORK"
+          echo "Set CFBundleIdentifier to com.unktr.neofreebird"
+
       - name: Upload Artifact
         if: ${{ inputs.upload_artifact }}
         uses: actions/upload-artifact@v7
