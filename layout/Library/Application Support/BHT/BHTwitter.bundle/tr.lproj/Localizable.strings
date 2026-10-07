@@ -230,6 +230,11 @@
 "TAP_TO_PAUSE_TITLE" = "Videoyu duraklatmak için dokun";
 "TAP_TO_PAUSE_DETAIL" = "Duraklat düğmesini kullanmak yerine videoyu iki parmakla dokunarak duraklatmanızı sağlar.";
 
+"OUTPLAYER_GESTURES_TITLE" = "Outplayer hareketleri";
+"OUTPLAYER_GESTURES_DETAIL" = "Videonun üzerinde yana sürükleyerek sessiz ve canlı seek yapın; duraklatılmışken küçük sürüklemeler kare kare ilerletir.";
+"OUTPLAYER_FRAME_STEP_TITLE" = "Kare kare seek";
+"OUTPLAYER_FRAME_STEP_DETAIL" = "Duraklatılmışken küçük yatay sürüklemeler videoyu kare kare oynatır.";
+
 "DISABLE_IMMERSIVE_SCROLL_TITLE" = "Video akışı kaydırmasını devre dışı bırak";
 "DISABLE_IMMERSIVE_SCROLL_DETAIL" = "Sürükleyici video akışındaki kaydırma davranışını devre dışı bırakır.";
 

@@ -214,6 +214,11 @@
 "TAP_TO_PAUSE_TITLE" = "Tap to pause videos";
 "TAP_TO_PAUSE_DETAIL" = "Tap with 2 fingers on a video to pause it, instead of having to use the pause button.";
 
+"OUTPLAYER_GESTURES_TITLE" = "Outplayer gestures";
+"OUTPLAYER_GESTURES_DETAIL" = "Drag sideways on a video to scrub it live and muted; small drags while paused step frame by frame.";
+"OUTPLAYER_FRAME_STEP_TITLE" = "Frame-by-frame scrubbing";
+"OUTPLAYER_FRAME_STEP_DETAIL" = "While paused, small horizontal drags move the video one frame at a time.";
+
 "DISABLE_IMMERSIVE_SCROLL_TITLE" = "No video feed scrolling";
 
 "DISABLE_VIDEO_DOCKING_TITLE" = "No video docking";

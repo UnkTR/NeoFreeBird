@@ -192,6 +192,17 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                         @"key": @"tap_to_pause",
                         @"default": @NO,
                         @"type": @"toggle"
+                    },
+                    @{
+                        @"key": @"outplayer_gestures",
+                        @"default": @NO,
+                        @"type": @"toggle"
+                    },
+                    @{
+                        @"key": @"outplayer_frame_step",
+                        @"parentKey": @"outplayer_gestures",
+                        @"default": @YES,
+                        @"type": @"toggle"
                     }
                 ]
             },
